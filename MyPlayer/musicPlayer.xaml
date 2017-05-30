@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="MyPlayer.musicPlayer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:SliderValueConverter x:Key="SliderValueConverter"/>
+    </Page.Resources>
+
+    <Grid Name="grid" Background="Chocolate">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <MediaElement Name="myMediaElement"  MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"  Stretch="Fill" Margin="243,211,44,129" Height="300" Width="300"
+                      AreTransportControlsEnabled="False" AudioCategory="BackgroundCapableMedia" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ComboBox x:Name="listsMusicsCB" Grid.Row="0" Margin="0,0,10,0" SelectionChanged="listsMusicsCB_SelectionChanged" Width="200"  />
+            <Button x:Name="button" Grid.Row="0" Content="+Lista" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="button_Click" Height="31" Width="78"/>
+        </StackPanel>
+
+        <ListView x:Name="songsView" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" DoubleTapped="songsView_DoubleTapped" Background="White"/>
+              
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            
+            <Slider x:Name="sliderTimeline" Width="300"
+                            ValueChanged="SeekToMediaPosition" ThumbToolTipValueConverter="{StaticResource SliderValueConverter}" />
+
+            <Slider x:Name="sliderVolume" Width="70.68" ValueChanged ="ChangeVolume"
+                            Minimum="0" Maximum="100" Value="50" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Height="45.236" >
+                <Slider.RenderTransform>
+                    <CompositeTransform Rotation="-90"/>
+                </Slider.RenderTransform>
+            </Slider>
+            
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="buttonPrevious"  Margin="5"   Background="AntiqueWhite" Click="buttonPrevious_Click" >
+                <SymbolIcon x:Name="Previous" Symbol="Previous" />
+            </Button>
+            <Button x:Name="buttonPlay" Margin="5" Background="AntiqueWhite" Click="buttonPlay_Click">
+                <SymbolIcon x:Name="play" Symbol="Play"/>
+            </Button>
+            <Button x:Name="buttonStop"  Margin="5"   Background="AntiqueWhite" Click="buttonStop_Click" >
+                <SymbolIcon x:Name="Stop" Symbol="Stop" />
+            </Button>
+            <Button x:Name="buttonNext" Margin="5"   Background="AntiqueWhite" Click="buttonNext_Click" >
+                <SymbolIcon x:Name="Next" Symbol="Next" />
+            </Button>
+            
+        </StackPanel>
+     </Grid>
+</Page>
