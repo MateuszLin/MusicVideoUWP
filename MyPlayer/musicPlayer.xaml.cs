@@ -77,6 +77,7 @@ namespace MyPlayer
             updater.Update();
         }
 
+
         private void MediaElement_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
             switch (myMediaElement.CurrentState)
@@ -97,6 +98,7 @@ namespace MyPlayer
                     break;
             }
         }
+
 
         void SystemControls_ButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
         {
@@ -126,6 +128,7 @@ namespace MyPlayer
         }
 
     }
+   
 
     async void PlayMedia()
     {

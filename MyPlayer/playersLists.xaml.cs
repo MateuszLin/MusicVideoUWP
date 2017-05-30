@@ -252,18 +252,6 @@ namespace MyPlayer
             {
                 conn.Query<listsMusics>("DELETE FROM listsMusics WHERE listName = ?", listN);
             }
-
-            
-
         }
-
-
-
-        //dodaje do combox gdy enter lub btn dodaj              --
-        //combox i odczyt z baz                                 --
-        //zapisz dodaje do bazy (usun calosc i dodaj na nowo)
-        // dwa klik all dodaje do listy jesli combox             --
-        // dwa klik na listy usunie z listy                      --
-
     }
 }
