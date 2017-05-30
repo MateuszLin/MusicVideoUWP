@@ -32,6 +32,7 @@ namespace MyPlayer
           
             this.InitializeComponent();
             getAllVideo();
+            Window.Current.CoreWindow.KeyDown += SpaceUP;
         }
 
 
@@ -66,7 +67,6 @@ namespace MyPlayer
         public async Task playVideo(string name, string path)
         {
             play.Symbol = Symbol.Pause;
-            //videoLib = Windows.Storage.KnownFolders.MusicLibrary;
             StorageFile song;
             Debug.WriteLine(name);
             Debug.WriteLine(path);
@@ -223,6 +223,27 @@ namespace MyPlayer
             else ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             myMediaElement.IsFullWindow = !myMediaElement.IsFullWindow;
             
+
+        }
+
+        private void SpaceUP(object sender, KeyRoutedEventArgs e)
+        {
+            Debug.WriteLine("space up");
+            if (e.Key == Windows.System.VirtualKey.Space) playBtn();
+        }
+        void SpaceUP (Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        {
+            if(args.VirtualKey == Windows.System.VirtualKey.Space) playBtn();
+            if (args.VirtualKey == Windows.System.VirtualKey.Up)
+            {
+                Debug.WriteLine("UP");
+                sliderVolume.Value += 5;
+            }
+            if (args.VirtualKey == Windows.System.VirtualKey.Down)
+            {
+                Debug.WriteLine("Down");
+                sliderVolume.Value -= 5;
+            }
 
         }
     }
