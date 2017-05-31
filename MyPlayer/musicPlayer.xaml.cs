@@ -162,6 +162,9 @@ namespace MyPlayer
             listsMusicsCB.SelectedItem = "ALL";
         }
 
+        /// <summary>
+        /// Pobranie wszystkich piosenek z Music do bazy
+        /// </summary>
         public async void sqlGetAllMusic()
         {
             var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "lists.db");
@@ -229,10 +232,11 @@ namespace MyPlayer
         }
 
 
+        /// <summary>
+        /// Odtwarzanie muzyki
+        /// </summary>
         public async Task newPlayMusic(string name, string path)
         {
-          
-            musicLib = Windows.Storage.KnownFolders.MusicLibrary;
             StorageFile song;
             Debug.WriteLine(name);
             Debug.WriteLine(path);
@@ -247,12 +251,14 @@ namespace MyPlayer
                 myMediaElement.Play();
                 updater.MusicProperties.Title = name;
                 updater.Update();
-                
             });
          
            
         }
 
+        /// <summary>
+        /// Ustawania slidera oraz timera przy odtwarzaniu nowego utworu
+        /// </summary>
         public void Element_MediaOpened(object sender, RoutedEventArgs e)
         {
 
@@ -265,15 +271,14 @@ namespace MyPlayer
         }
 
         
-          private void Element_MediaEnded(object sender, RoutedEventArgs e)
-          {
+        private void Element_MediaEnded(object sender, RoutedEventArgs e)
+        {
             nextOrPreviousSong(true);
-          }
+        }
           
 
         public void ChangeVolume(object sender, RangeBaseValueChangedEventArgs e)
         {
-
             setVolume(sliderVolume.Value);
         }
 
@@ -283,7 +288,9 @@ namespace MyPlayer
             myMediaElement.Volume = value / 100;
         }
 
-
+        /// <summary>
+        /// Ręczne przesunięcie slidera
+        /// </summary>
         public void SeekToMediaPosition(object sender, RangeBaseValueChangedEventArgs e)
         {
             int sliderValue = (int)sliderTimeline.Value;
@@ -291,7 +298,9 @@ namespace MyPlayer
             myMediaElement.Position = ts;
         }
 
-
+        /// <summary>
+        /// Automatyczne przesuwanie slidera
+        /// </summary>
         public void Timer_Tick(object sender, object e)
         {
             sliderTimeline.Value = myMediaElement.Position.TotalMilliseconds;
@@ -389,7 +398,9 @@ namespace MyPlayer
             
         }
 
-
+        /// <summary>
+        /// Zmiana listy odtwarzania
+        /// </summary>
         public void changeView(String item)
         {
             songsView.Items.Clear();

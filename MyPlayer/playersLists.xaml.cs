@@ -34,7 +34,9 @@ namespace MyPlayer
         }
 
      
-
+        /// <summary>
+        /// Pobranie całej muzyki z bazy
+        /// </summary>
         private void getAllMusic()
         {
             var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "lists.db");
@@ -49,6 +51,9 @@ namespace MyPlayer
             }
         }
 
+        /// <summary>
+        /// Pobranie stworzonych przez użytkownika list odtwarzań do comboboxa
+        /// </summary>
         private void getlistsMusicsCB()
         {
             var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "lists.db");
@@ -62,6 +67,7 @@ namespace MyPlayer
                 }
             }
         }
+
 
         private async void allMusicLV_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
@@ -95,6 +101,7 @@ namespace MyPlayer
             listsMusicLV.Items.Add(item);
         }
 
+
         private void listsMusicLV_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             String item = listsMusicLV.SelectedItem.ToString();
@@ -118,6 +125,10 @@ namespace MyPlayer
             
         }
 
+        /// <summary>
+        /// zmiana listy na inną wybraną z comboboxa
+        /// </summary>
+        /// <param name="listName"></param>
         private void changeView(String listName)
         {
             listsMusicLV.Items.Clear();
@@ -133,12 +144,11 @@ namespace MyPlayer
 
         }
 
+      
         private void textBox1_KeyUp(object sender, KeyRoutedEventArgs e)
        {
             if (e.Key == VirtualKey.Enter)
                 addToComboBox();
-            
-            
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -146,6 +156,9 @@ namespace MyPlayer
             addToComboBox();
         }
 
+        /// <summary>
+        /// dodanie nowej listy do comboboxa
+        /// </summary>
         private async void addToComboBox()
         {
             String text = textBox1.Text;
@@ -192,6 +205,9 @@ namespace MyPlayer
                 saveChange();
         }
 
+        /// <summary>
+        /// zapisanie listy do bazy
+        /// </summary>
         private async void saveChange()
         {
 
@@ -201,6 +217,9 @@ namespace MyPlayer
             
         }
 
+        /// <summary>
+        /// dodawania piosenek do bazy
+        /// </summary>
         private void addNewList()
         {
             String listN = listMusicsCB.SelectedItem.ToString();
@@ -223,7 +242,9 @@ namespace MyPlayer
             }
         }
 
-
+        /// <summary>
+        /// usuniecie listy z bazy
+        /// </summary>
         private void clearList()
         {
             var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "lists.db");
